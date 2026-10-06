@@ -16,6 +16,7 @@
   "main": "index.js",
   "scripts": {
     "seed": "node src/seed.js",
+    "ingest": "node src/ingest.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
