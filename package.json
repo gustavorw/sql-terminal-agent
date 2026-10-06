@@ -17,7 +17,9 @@
   "scripts": {
     "seed": "node src/seed.js",
     "ingest": "node src/ingest.js",
-    "env:setup": "cp .env.example .env.local"
+    "env:setup": "cp .env.example .env.local",
+    "start": "node src/index.js",
+    "dev": "node --watch --env-file=.env src/index.js"
   },
   "devDependencies": {
     "@faker-js/faker": "9.0.0"
