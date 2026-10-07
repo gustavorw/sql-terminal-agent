@@ -19,7 +19,8 @@
     "ingest": "node src/ingest.js",
     "env:setup": "cp .env.example .env.local",
     "start": "node src/index.js",
-    "dev": "node --watch --env-file=.env src/index.js"
+    "dev": "node --watch --env-file=.env src/index.js",
+    "test": "node --experimental-test-module-mocks --test ./src/*spec.js"
   },
   "devDependencies": {
     "@faker-js/faker": "9.0.0"

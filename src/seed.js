@@ -1,6 +1,8 @@
 import { createWriteStream, statSync } from 'node:fs'
-import { faker } from '@faker-js/faker'
+import { generateLogEntry, generateUser } from './mocks.js'
 import { LOG_FILE, LOG_INTERVAl } from './constants.js'
+import { faker } from '@faker-js/faker'
+
 const maxRecords = Number(process.argv[2] || Infinity)
 
 if ((!Number.isInteger(maxRecords) && Number.isFinite(maxRecords)) || maxRecords <= 0 || Number.isNaN(maxRecords)) {
@@ -10,30 +12,6 @@ if ((!Number.isInteger(maxRecords) && Number.isFinite(maxRecords)) || maxRecords
 }
 
 const stream = createWriteStream(LOG_FILE)
-
-function generateUser() {
-    return {
-        ip: faker.internet.ip(),
-        username: faker.internet.userName(),
-        first_name: faker.person.firstName(),
-        last_name: faker.person.lastName(),
-        email: faker.internet.email(),
-        location: faker.location.city(),
-        job_area: faker.person.jobArea(),
-        company: faker.company.name(),
-        job_title: faker.person.jobTitle(),
-
-    }
-}
-
-function generateLogEntry(user) {
-
-    return {
-        ...user,
-        id: faker.string.uuid(),
-        timestamp: faker.date.recent().toISOString(),
-    }
-}
 
 
 function writeRecord(line) {
