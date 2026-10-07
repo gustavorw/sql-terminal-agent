@@ -7,16 +7,17 @@ describe('Teste para a integração com o modelo de linguagem', () => {
 
 
         ctx.mock.module('ai', {
-            exports: {
-                generateText: async ({ system, prompt }) => {
-                    return {
-                        experimental_output: {
-                            sql: 'SELECT COUNT(*) FROM acessos GROUP BY DATE(data)',
-                            explanation: 'Esta query retorna o número de acessos por dia, agrupando os registros pela data.'
-                        }
-                    };
-                }
-            }
+            namedExports: {
+                generateText: async () => ({
+                    experimental_output: {
+                        sql: 'SELECT DATE(timestamp) AS dia, COUNT(*) AS total FROM access_logs GROUP BY DATE(timestamp)',
+                        explanation: 'Conta os acessos por dia.',
+                    },
+                }),
+                Output: {
+                    object: (options) => options,
+                },
+            },
         });
 
         const { generateSqlObject } = await import('./ai.js');
