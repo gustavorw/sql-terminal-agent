@@ -5,9 +5,9 @@ describe('Teste para a integração com o modelo de linguagem', () => {
 
     it('Deve gerar uma query SQL válida para uma pergunta simples', async (ctx) => {
 
-        // Mock do módulo 'ai' sem tentar exportar 'Output'
+
         ctx.mock.module('ai', {
-            namedExports: {
+            exports: {
                 generateText: async ({ system, prompt }) => {
                     return {
                         experimental_output: {
